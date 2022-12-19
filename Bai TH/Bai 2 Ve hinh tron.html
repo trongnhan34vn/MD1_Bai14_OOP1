@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class Circle {
+    radius;
+
+    constructor(radius) {
+      this.radius = radius;
+    }
+
+    getRadius() {
+      return this.radius;
+    }
+    getArea() {
+      return Math.PI * radius * radius;
+    }
+    getPerimeter() {
+        return Math.PI * 2 * radius;
+    }
+    toString() {
+        return 'Diện tích là: ' + this.getArea()  + '; Chu vi là: ' + this.getPerimeter();
+    }
+  }
+  let circle = new Circle(2);
+  let radius = circle.getRadius();
+  let area = circle.getArea();
+
+  alert('Radius: ' + radius + '; Area: ' + area);
+</script>
+</body>
+</html>

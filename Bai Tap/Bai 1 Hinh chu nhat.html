@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .app {
+            width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+        span {
+            color: red;
+        }
+        button {
+            margin-top: 20px;
+        }
+        .text-result,
+        .button,
+        .input {
+            width: 39%;
+            text-align: left;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>Chu vi và Diện tích Hình chữ nhật</h1>
+    <div class="input">
+        <p>Chiều dài</p>
+        <input id="length" type="text">
+        <p>Chiều rộng</p>
+        <input id="width" type="text">
+    </div>
+    <div class="button">
+        <button onclick="getInput()">Submit</button>
+        <button onclick="reset()">Reset</button>
+    </div>
+    <div class="output">
+        <div class="text-result">
+            <h1>Diện tích là: <span id="area">0</span></h1>
+            <h1>Chu vi là: <span id="perimeter">0</span></h1>
+        </div>
+        <div class="canvas">
+            <canvas id="myCanvas" width="1200" height="500" style="border: 1px solid #d3d3d3"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    class Retangle {
+        length;
+        width;
+        x;
+        y;
+
+        constructor(length, width) {
+            this.length = length;
+            this.width = width;
+        }
+
+        getArea() {
+            return this.width * this.length;
+        }
+
+        getPermeter() {
+            return (this.width + this.length) * 2;
+        }
+    }
+        let canvas = document.getElementById('myCanvas');
+        let ctx = canvas.getContext("2d");
+
+    function getInput() {
+        let lengthInput = + document.getElementById('length').value;
+        let widthInput = + document.getElementById('width').value;
+        let checkInput = lengthInput > widthInput;
+        if(checkInput){
+            let rectangle = new Retangle(lengthInput,widthInput);
+            let perimeter = rectangle.getPermeter();
+            let area = rectangle.getArea();
+            document.getElementById('area').innerHTML = area;
+            document.getElementById('perimeter').innerHTML = perimeter;
+            let x = (document.getElementById('myCanvas').width / 2) - (lengthInput / 2);
+            console.log(x)
+            let y = (document.getElementById('myCanvas').height / 2) - (widthInput / 2);
+            console.log(y)
+            ctx.fillStyle = "red";
+            ctx.fillRect(x,y,lengthInput,widthInput);
+        } else {
+            alert('Chiều dài cần lớn hơn chiều rộng');
+            document.getElementById('length').value = '';
+            document.getElementById('width').value = '';
+        }
+    }
+
+    function reset() {
+        document.getElementById('area').innerHTML = 0;
+        document.getElementById('perimeter').innerHTML = 0;
+        document.getElementById('length').value = '';
+        document.getElementById('width').value = '';
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+
+</script>
+</body>
+</html>

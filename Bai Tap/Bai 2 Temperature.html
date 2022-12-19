@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .app {
+            width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>Chuyển đổi độ C</h1>
+    <p>Độ &#8451;</p>
+    <input id="input" type="number" oninput="exchangeTemp()">
+
+    <h1>Kết quả</h1>
+    <p>Độ &#8457;</p>
+    <h1 style="color: red"><span id="degreeF">0</span><span> &#8457;</span></h1>
+    <p>Độ &#8490;</p>
+    <h1 style="color: red"><span id="degreeK">0</span><span> &#8490;</span></h1>
+</div>
+<script>
+    class Temperature {
+        degreeC;
+
+        constructor(degreeC) {
+            this.degreeC = degreeC;
+        }
+
+        getFDegree() {
+            return this.degreeC * 9/5 + 32;
+        }
+
+        getKDergree() {
+            return this.degreeC + 273.15;
+        }
+    }
+
+    function exchangeTemp() {
+        let input = + document.getElementById('input').value;
+        let exchange = new Temperature(input);
+        let degreeF = exchange.getFDegree();
+        let degreeK = exchange.getKDergree();
+        document.getElementById('degreeF').innerHTML = degreeF;
+        document.getElementById('degreeK').innerHTML = degreeK;
+    }
+</script>
+</body>
+</html>

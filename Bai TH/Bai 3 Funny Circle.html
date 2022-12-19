@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            margin: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="768px" style="border: 1px solid #d3d3d3"></canvas>
+<script>
+    class Circle {
+        x;
+        y;
+        radius;
+
+        constructor(x, y, radius) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+        }
+
+        setRadius(radius) {
+            this.radius = radius;
+        }
+
+        getRandomHex() {
+            return Math.floor(Math.random() * 255);
+        }
+
+        getRandomColor() {
+            let red = this.getRandomHex();
+            let green = this.getRandomHex();
+            let blue = this.getRandomHex();
+            return "rgb(" + red + "," + green + "," + blue + ")";
+        }
+
+        createCircle(ctx, canvas) {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+            ctx.fillStyle = this.getRandomColor();
+            ctx.fill();
+        }
+    }
+    // Khởi tạo nét vẽ
+    let canvas =  document.getElementById('myCanvas')
+    let ctx = canvas.getContext("2d");
+    // let circle = new Circle(500,500,50);
+    // circle.setRadius(Math.floor(Math.random()*80));
+    // circle.createCircle(ctx,canvas);
+    //
+    // let circle2 = new Circle();
+    // circle2.setRadius(Math.floor(Math.random()*80));
+    // circle2.createCircle(ctx,canvas);
+
+    for (let i = 0; i < 30; i++) {
+        let circle = new Circle()
+        circle.setRadius(Math.floor(Math.random() * 80)) // set random bán kính
+        circle.createCircle(ctx,canvas)
+    }
+</script>
+</body>
+</html>
